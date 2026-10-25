@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b12">
+  <meta name="description" content="Scarica CodeGuess dallo store del tuo telefono.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CodeGuess · Inizia a giocare">
+  <meta property="og:description" content="Apri questo link dal telefono: ti porterà direttamente allo store giusto.">
+  <meta property="og:image" content="https://alby310.github.io/CodeGuessLegal/assets/codeguess-icon.png">
+  <title>CodeGuess · Reindirizzamento allo store</title>
+  <link rel="icon" href="./assets/codeguess-icon.png">
+  <link rel="stylesheet" href="./legal.css">
+</head>
+<body class="store-page">
+  <main class="store-card store-redirect" aria-labelledby="page-title">
+    <img class="store-icon" src="./assets/codeguess-icon.png" alt="" width="112" height="112">
+    <p class="eyebrow">CodeGuess</p>
+    <h1 id="page-title">Ti portiamo allo store.</h1>
+    <p class="store-lead" id="redirect-message" role="status" aria-live="polite">Sto aprendo lo store adatto al tuo telefono…</p>
+    <noscript><p class="store-lead">Per scaricare CodeGuess, apri questo link da un iPhone o da un telefono Android.</p></noscript>
+  </main>
+  <script>
+    (() => {
+      const agent = navigator.userAgent || "";
+      const isAndroid = /Android/i.test(agent);
+      const isAppleMobile = /iPhone|iPad|iPod/i.test(agent)
+        || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+      const googlePlay = "https://play.google.com/store/apps/details?id=com.albertomargaglia.codeguessandroid";
+      const appStore = "https://apps.apple.com/it/app/id6777060328";
+
+      if (isAndroid) {
+        window.location.replace(googlePlay);
+      } else if (isAppleMobile) {
+        window.location.replace(appStore);
+      } else {
+        document.getElementById("redirect-message").textContent =
+          "Apri questo link dal tuo iPhone o telefono Android per raggiungere lo store.";
+      }
+    })();
+  </script>
+</body>
+</html>
